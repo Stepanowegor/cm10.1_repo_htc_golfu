@@ -19,12 +19,19 @@ USE_CAMERA_STUB := true
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_SMP := true
+TARGET_ARCH=arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := golfu
 TARGET_CORTEX_CACHE_LINE_32 := true
+
+TARGET_KERNEL_SOURCE := kernel/htc/golfu
+TARGET_KERNEL_CONFIG := golfu_defconfig
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
+BOARD_KERNEL_BASE := 0x13000000
 
 # Bionic hax
 TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
@@ -39,6 +46,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Kernel
+TARGET_PREBUILT_KERNEL := device/htc/golfu/kernel
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
 BOARD_KERNEL_BASE := 0x13000000
 
@@ -75,6 +83,7 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 TARGET_SPECIFIC_HEADER_PATH := device/htc/golfu/include
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/golfu/bluetooth
 
 # Init stuffs
 TARGET_PROVIDES_INIT_TARGET_RC := true
@@ -87,13 +96,13 @@ BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_LIBS := true
 
 # Wifi related definitions
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
-WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WLAN_DEVICE := ath6kl
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
 WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
-BOARD_LEGACY_NL80211_STA_EVENTS  := true
 
 # Misc
 TARGET_BOOTANIMATION_PRELOAD := true
