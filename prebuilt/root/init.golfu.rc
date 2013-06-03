@@ -12,15 +12,12 @@ on emmc
     mount ext4 emmc@devlog /devlog nosuid nodev barrier=1
 
 on early-init
-    mkdir /storage 0775 system sdcard_r
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SD_EXT_DIRECTORY /sd-ext
+    mkdir /storage 0050 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
-
-    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-
-    export EXTERNAL_STORAGE /storage/sdcard0
-    device mtd@misc 0460 radio diag
 
 on init
     chown root root /devlog
@@ -68,16 +65,15 @@ on boot
     chown nfc nfc /dev/pn544
 
 # HTC_WIFI_START
+    mkdir /data/misc 01771 system misc
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/hostapd 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/wifi/hostap 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-    insmod /system/lib/modules/cfg80211.ko
-    chown system system /sys/devices/platform/msm_sdcc.2/polling
 
-    #Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
+#Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
     mkdir /data/system 0775 system system
     symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
 # HTC_WIFI_END
@@ -343,3 +339,6 @@ service zimmer /system/bin/zimmer on /dev/block/mmcblk0p27
 service zcb /system/bin/logwrapper /system/bin/zcb service
     user root
     group root
+
+# load wifi module
+insmod /system/lib/modules/ath6kl_sdio.ko
