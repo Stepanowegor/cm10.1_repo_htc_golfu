@@ -1,2 +1,1 @@
-cm10.1_repo_htc_golfu
-=====================
+CM10.1 SOURCE CODE FOR HTC DESIRE C (GOLFU) HAPPY BUILDING!
