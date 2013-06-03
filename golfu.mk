@@ -243,6 +243,7 @@ PRODUCT_COPY_FILES += \
     device/htc/golfu/proprietary/bin/zimmer:system/bin/zimmer \
     device/htc/golfu/proprietary/bin/ath6kl-fwlog-record:system/bin/ath6kl-fwlog-record \
     device/htc/golfu/proprietary/bin/athtestcmd:system/bin/athtestcmd \
+    device/htc/golfu/proprietary/bin/wpa_supplicant:system/bin/wpa_supplicant \
     device/htc/golfu/proprietary/xbin/wireless_modem:system/xbin/wireless_modem 
     
 PRODUCT_PROPERTY_OVERRIDES += \
