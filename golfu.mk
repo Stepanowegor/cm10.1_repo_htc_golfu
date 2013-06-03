@@ -227,8 +227,6 @@ PRODUCT_COPY_FILES += \
     device/htc/golfu/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/htc/golfu/proprietary/lib/modules/ath6kl_sdio.ko:system/lib/modules/ath6kl_sdio.ko \
     device/htc/golfu/proprietary/lib/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
-    device/htc/golfu/proprietary/lib/modules/compat.ko:system/lib/modules/compat.ko \
-    device/htc/golfu/proprietary/lib/modules/kineto_gan.ko:system/lib/modules/kineto_gan.ko \
     device/htc/golfu/proprietary/bin/fm_qsoc_patches:system/bin/fm_qsoc_patches \
     device/htc/golfu/proprietary/bin/udhcpd:system/bin/udhcpd \
     device/htc/golfu/proprietary/bin/clockd:system/bin/clockd \
