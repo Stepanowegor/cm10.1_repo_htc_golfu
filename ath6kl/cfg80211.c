@@ -432,7 +432,10 @@ static bool ath6kl_is_valid_iftype(struct ath6kl *ar, enum nl80211_iftype type,
 	struct ath6kl *ar = ath6kl_priv(dev);
 	struct ath6kl_vif *vif = netdev_priv(dev);
 	int status;
+	u8 nw_subtype = (ar->p2p) ? SUBTYPE_P2PDEV : SUBTYPE_NONE;
 	u16 interval;
+
+	ath6kl_cfg80211_sscan_disable(vif);
 
 	vif->sme_state = SME_CONNECTING;
 
@@ -473,6 +476,7 @@ static bool ath6kl_is_valid_iftype(struct ath6kl *ar, enum nl80211_iftype type,
 			ath6kl_err("cmd queue drain timeout\n");
 			up(&ar->sem);
 			return -EINTR;
+		}
 	}
 
 	status = ath6kl_set_assoc_req_ies(vif, sme->ie, sme->ie_len);
@@ -1732,6 +1736,7 @@ static bool is_rate_ht20(s32 rate, u8 *mcs, bool *sgi)
 
 			*mcs = i;
 			return true;
+		}
 	}
 	return false;
 }
@@ -1763,6 +1768,7 @@ static bool is_rate_ht40(s32 rate, u8 *mcs, bool *sgi)
 static int ath6kl_get_station(struct wiphy *wiphy, struct net_device *dev,
 			      u8 *mac, struct station_info *sinfo)
 {
+	struct ath6kl *ar = ath6kl_priv(dev);
 	struct ath6kl_vif *vif = netdev_priv(dev);
 	long left;
 	bool sgi;
